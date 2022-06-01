@@ -1,0 +1,129 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  id: Int!
+  time: String!
+  description: String
+  likes: String!
+  userId: Int!
+  comments: [Comment!]
+  user: User!
+}
+
+type Comment {
+  id: Int!
+  message: String!
+  userId: Int!
+  postId: Int!
+  post: Post!
+  user: User!
+}
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  password: String!
+  bio: String
+  description: String
+  posts: [Post!]
+  comments: [Comment!]
+}
+
+type Notification {
+  id: Int!
+  type: Float!
+  message: String!
+  commentId: Int!
+  postId: Int!
+  senderId: Int!
+  receiverId: Int!
+}
+
+type Query {
+  getAllUsers: [User!]!
+  getUserById(id: Float!): User!
+  getAllPost: [Post!]!
+  getPostById(id: Float!): Post!
+  getAllComment: [Comment!]!
+  getCommentById(id: Float!): Comment!
+  notification(id: Int!): Notification!
+}
+
+type Mutation {
+  createUser(userInput: CreateUserInput!): User!
+  updateUser(userUpdateInput: UpdateUserInput!): User!
+  removeUser(id: Float!): User!
+  createPost(PostInput: CreatePostInput!): Post!
+  updatePost(updatePost: UpdatePostInput!): Post!
+  removePost(id: Float!): Post!
+  createComment(CommentInput: CreateCommentInput!): Comment!
+  updateComment(updateComment: UpdateCommentInput!): Comment!
+  removeComment(id: Float!): Comment!
+  createNotification(
+    createNotificationInput: CreateNotificationInput!
+  ): Notification!
+  updateNotification(
+    updateNotificationInput: UpdateNotificationInput!
+  ): Notification!
+  removeNotification(id: Int!): Notification!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+  bio: String
+  description: String
+}
+
+input UpdateUserInput {
+  id: Int!
+  name: String!
+  email: String!
+  password: String!
+  bio: String
+  description: String
+}
+
+input CreatePostInput {
+  time: String!
+  description: String
+  likes: String!
+  userId: Int!
+}
+
+input UpdatePostInput {
+  id: Int!
+  time: String!
+  description: String
+  likes: String!
+}
+
+input CreateCommentInput {
+  message: String!
+  postId: Int!
+  userId: Int!
+}
+
+input UpdateCommentInput {
+  id: Int!
+  message: String!
+}
+
+input CreateNotificationInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int!
+}
+
+input UpdateNotificationInput {
+  """
+  Example field (placeholder)
+  """
+  exampleField: Int
+  id: Int!
+}
